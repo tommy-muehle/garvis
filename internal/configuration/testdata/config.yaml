@@ -1,0 +1,14 @@
+server:
+  addr: ":8080"
+github:
+  secrect_key: "secret"
+reviewers:
+  -
+    language: "PHP"
+    users:
+      - "username1"
+      - "username2"
+  -
+    language: "Go"
+    users:
+      - "username2"
