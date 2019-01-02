@@ -11,7 +11,7 @@ func TestCanGetDefaultConfig(t *testing.T) {
 	assert := assert.New(t)
 
 	config := DefaultConfig()
-	assert.Equal(":4567", config.Server.Addr)
+	assert.Equal(":80", config.Server.Addr)
 	assert.True(config.Log.Debug)
 	assert.Equal("secret", config.Github.SecretKey)
 	assert.Equal("bot-user", config.Github.Username)
@@ -52,7 +52,7 @@ func TestFromEnvironment(t *testing.T) {
 	assert.Equal("bar", config.Github.Password)
 
 	for _, rc := range config.Reviewers {
-		if "GO" != rc.Language {
+		if rc.Language != "GO" {
 			continue
 		}
 

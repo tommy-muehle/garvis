@@ -46,11 +46,17 @@ func (r *Resolver) ResolveAllocator() *github.Allocator {
 }
 
 func (r *Resolver) ResolveLogger() *zap.Logger {
+	var err error
+
 	if r.logger == nil {
 		if r.config.Log.Debug {
-			r.logger, _ = zap.NewDevelopment()
+			r.logger, err = zap.NewDevelopment()
 		} else {
-			r.logger, _ = zap.NewProduction()
+			r.logger, err = zap.NewProduction()
+		}
+
+		if err != nil {
+			panic(err)
 		}
 	}
 

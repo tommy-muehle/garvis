@@ -3,6 +3,7 @@ package configuration
 import (
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -40,7 +41,7 @@ type reviewerConfiguration struct {
 }
 
 func LoadFromFile(file string) (*Configuration, error) {
-	bytes, err := ioutil.ReadFile(file)
+	bytes, err := ioutil.ReadFile(filepath.Clean(file))
 	if err != nil {
 		return nil, err
 	}
